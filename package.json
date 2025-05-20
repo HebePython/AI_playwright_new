@@ -1,0 +1,26 @@
+{
+  "name": "ai_playwright_new",
+  "version": "1.0.0",
+  "description": "Learning playwright with ai/mcp and more",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HebePython/AI_playwright_new.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HebePython/AI_playwright_new/issues"
+  },
+  "homepage": "https://github.com/HebePython/AI_playwright_new#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0"
+  }
+}
