@@ -2,19 +2,19 @@ import { Page } from '@playwright/test';
 
 export class LoginPage {
   readonly page: Page;
-  readonly emailInput: string;
-  readonly passwordInput: string;
-  readonly loginButton: string;
-  readonly googleSignInButton: string;
-  readonly registerLink: string;
+  readonly emailInput: Locator;
+  readonly passwordInput: Locator;
+  readonly loginButton: Locator;
+  readonly googleSignInButton: Locator;
+  readonly registerLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.emailInput = 'input[placeholder="Email address *"], input[type="email"]';
-    this.passwordInput = 'input[placeholder="Password *"], input[type="password"]';
-    this.loginButton = 'input[aria-label="Login"]';
-    this.googleSignInButton = 'button[aria-label="Sign in with Google"]';
-    this.registerLink = 'a:has-text("Register your account")';
+    this.emailInput = this.page.locator('input[placeholder="Email address *"], input[type="email"]');
+    this.passwordInput = this.page.locator('input[placeholder="Password *"], input[type="password"]');
+    this.loginButton = this.page.locator('input[aria-label="Login"]');
+    this.googleSignInButton = this.page.locator('button[aria-label="Sign in with Google"]');
+    this.registerLink = this.page.locator('a:has-text("Register your account")');
   }
 
   async goto() {
