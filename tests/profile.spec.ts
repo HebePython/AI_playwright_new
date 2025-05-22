@@ -1,6 +1,5 @@
-import { test, expect } from './base';
+import { test, expect } from '../utils/base';
 import { testUser2 } from '../utils/testData/userData';
-import { AccountPage } from '../POM/AccountPage';
 
 test.describe('Practice Software Testing - Profile Page', () => {
   test.beforeEach(async ({ login, register, account }) => {

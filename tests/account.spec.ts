@@ -1,4 +1,4 @@
-import { test, expect } from './base';
+import { test, expect } from '../utils/base';
 import { testUser2 } from '../utils/testData/userData';
 
 test.describe('Practice Software Testing - Account Page', () => {
