@@ -1,4 +1,5 @@
 import { test, expect } from './base';
+import { testUser2 } from '../utils/testData/userData';
 
 test.describe('Practice Software Testing - Login Page', () => {
   test.beforeEach(async ({ login }) => {
@@ -17,5 +18,11 @@ test.describe('Practice Software Testing - Login Page', () => {
 
   test('Register link is visible', async ({ login }) => {
     expect(await login.isRegisterLinkVisible()).toBeTruthy();
+  });
+
+  test('Login with valid credentials (testUser2)', async ({ login }) => {
+    await login.login(testUser2.email, testUser2.password);
+    // Example: Check for a successful login indicator, such as a user profile or logout button
+    await expect(login.page.locator('a[data-test="nav-profile"], button[data-test="logout"]')).toBeVisible();
   });
 });
