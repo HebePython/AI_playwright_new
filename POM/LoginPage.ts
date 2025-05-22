@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test';
 
-export class PracticeSoftwareTestingLoginPage {
+export class LoginPage {
   readonly page: Page;
   readonly emailInput: string;
   readonly passwordInput: string;

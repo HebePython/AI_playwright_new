@@ -1,24 +1,23 @@
 import { test as base, expect, Page } from '@playwright/test';
-import { PracticeSoftwareTestingHomePage } from '../POM/PracticeSoftwareTestingHomePage';
-import { PracticeSoftwareTestingLoginPage } from '../POM/PracticeSoftwareTestingLoginPage';
-import { PracticeSoftwareTestingRegisterPage } from '../POM/PracticeSoftwareTestingRegisterPage';
+import { HomePage } from '../POM/HomePage';
+import { LoginPage } from '../POM/LoginPage';
+import { RegisterPage } from '../POM/RegisterPage';
 
-// Custom fixture for PracticeSoftwareTestingHomePage
 export const test = base.extend<{
-  home: PracticeSoftwareTestingHomePage,
-  login: PracticeSoftwareTestingLoginPage,
-  register: PracticeSoftwareTestingRegisterPage
+  home: HomePage,
+  login: LoginPage,
+  register: RegisterPage
 }>({
   home: async ({ page }, use) => {
-    const home = new PracticeSoftwareTestingHomePage(page);
+    const home = new HomePage(page);
     await use(home);
   },
   login: async ({ page }, use) => {
-    const login = new PracticeSoftwareTestingLoginPage(page);
+    const login = new LoginPage(page);
     await use(login);
   },
   register: async ({ page }, use) => {
-    const register = new PracticeSoftwareTestingRegisterPage(page);
+    const register = new RegisterPage(page);
     await use(register);
   },
 });
