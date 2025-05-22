@@ -20,7 +20,7 @@ test.describe('Practice Software Testing - Register Page', () => {
     expect(await register.isCountryDropdownVisible()).toBeTruthy();
   });
 
-  test('Register a new user with with a leaked password', async ({ register }) => {
+  test('Register a new user with a leaked password', async ({ register }) => {
     await register.registerWithTestData(testUser);
     await register.registerErrorMessage();
     await expect(register.registerError).toHaveText('The given password has appeared in a data leak. Please choose a different password.');
