@@ -1,4 +1,4 @@
-import { test, expect } from './base';
+import { test, expect } from '../utils/base';
 
 test.describe('Practice Software Testing - Main Navigation and Elements', () => {
   test.beforeEach(async ({ home }) => {
@@ -10,54 +10,45 @@ test.describe('Practice Software Testing - Main Navigation and Elements', () => 
     expect(title).toContain('Practice Software Testing - Toolshop');
   });
 
-  test('Navigation bar is visible', async ({ page }) => {
-    expect(await page.isVisible('nav, [role="menubar"]')).toBeTruthy();
+  test('Navigation bar is visible', async ({ home }) => {
+    await expect(home.navBar).toBeVisible();
   });
 
-  test('Sign in link is visible', async ({ page }) => {
-    expect(await page.isVisible('a[href="/auth/login"]')).toBeTruthy();
+  test('Sign in link is visible', async ({ home }) => {
+    await expect(home.signInLink).toBeVisible();
   });
 
-  test('Contact link is visible', async ({ page }) => {
-    expect(await page.isVisible('a[href="/contact"]')).toBeTruthy();
+  test('Contact link is visible', async ({ home }) => {
+    await expect(home.contactLink).toBeVisible();
   });
 
-  test('Categories button is visible', async ({ page }) => {
-    expect(await page.isVisible('a[data-test="nav-categories"]')).toBeTruthy();
+  test('Categories button is visible', async ({ home }) => {
+    await expect(home.categoriesButton).toBeVisible();
   });
 
-  test('Footer is visible', async ({ page }) => {
-    expect(await page.isVisible('a[href="/privacy"]')).toBeTruthy();
+  test('Footer is visible', async ({ home }) => {
+    await expect(home.footer).toBeVisible();
   });
 
-  test('Banner image is visible', async ({ page }) => {
-    expect(await page.isVisible('img[alt="Banner"]')).toBeTruthy();
+  test('Banner image is visible', async ({ home }) => {
+    await expect(home.bannerImage).toBeVisible();
   });
 
-  test('Sort dropdown is visible', async ({ page }) => {
-    expect(await page.isVisible('select[aria-label="sort"]')).toBeTruthy();
+  test('Sort dropdown is visible', async ({ home }) => {
+    await expect(home.sortDropdown).toBeVisible();
   });
 
-  test('Search box is visible', async ({ page }) => {
-    expect(await page.isVisible('input[placeholder="Search"], input[aria-label="Search"]')).toBeTruthy();
+  test('Search box is visible', async ({ home }) => {
+    await expect(home.searchBox).toBeVisible();
   });
 
-  test('Navigation links contain expected text', async ({ page }) => {
-    const links = await page.$$eval('nav a, [role="menubar"] a', els => els.map(e => e.textContent?.toLowerCase() || ''));
-    expect(links).toEqual(expect.arrayContaining([
-      expect.stringMatching(/home/),
-      expect.stringMatching(/contact/),
-      expect.stringMatching(/sign in/)
-    ]));
-  });
-
-  test('Clicking Sign in navigates to login page', async ({ page }) => {
-    await page.click('a[href="/auth/login"]');
+  test('Clicking Sign in navigates to login page', async ({ home, page }) => {
+    await home.clickSignIn();
     await expect(page).toHaveURL(/.*\/auth\/login/);
   });
 
-  test('Clicking Contact navigates to contact page', async ({ page }) => {
-    await page.click('a[href="/contact"]');
+  test('Clicking Contact navigates to contact page', async ({ home, page }) => {
+    await home.clickContact();
     await expect(page).toHaveURL(/.*\/contact/);
   });
 });

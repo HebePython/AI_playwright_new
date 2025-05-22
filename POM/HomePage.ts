@@ -1,10 +1,26 @@
-import { Page } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 
 export class HomePage {
   readonly page: Page;
+  readonly navBar: Locator;
+  readonly signInLink: Locator;
+  readonly contactLink: Locator;
+  readonly categoriesButton: Locator;
+  readonly footer: Locator;
+  readonly bannerImage: Locator;
+  readonly sortDropdown: Locator;
+  readonly searchBox: Locator;
 
   constructor(page: Page) {
     this.page = page;
+    this.navBar = page.getByRole('navigation').filter({ hasText: 'Home Categories Hand' });
+    this.signInLink = page.locator('a[href="/auth/login"]');
+    this.contactLink = page.locator('a[href="/contact"]');
+    this.categoriesButton = page.locator('a[data-test="nav-categories"], button[aria-label="Categories"]');
+    this.footer = page.locator('footer, a[href="/privacy"]');
+    this.bannerImage = page.locator('img[alt="Banner"]');
+    this.sortDropdown = page.locator('select[aria-label="sort"], select[name="sort"]');
+    this.searchBox = page.locator('input[placeholder="Search"], input[aria-label="Search"]');
   }
 
   async goto() {
@@ -16,50 +32,46 @@ export class HomePage {
   }
 
   async isNavVisible() {
-    return this.page.isVisible('nav[role="navigation"]');
+    return this.navBar.isVisible();
   }
 
   async isSignInVisible() {
-    return this.page.isVisible('a[href="/auth/login"]');
+    return this.signInLink.isVisible();
   }
 
   async isContactVisible() {
-    return this.page.isVisible('a[href="/contact"]');
+    return this.contactLink.isVisible();
   }
 
   async isCategoriesVisible() {
-    return this.page.isVisible('button[aria-label="Categories"]');
+    return this.categoriesButton.isVisible();
   }
 
   async isFooterVisible() {
-    return this.page.locator('footer, text=Privacy Policy').isVisible();
+    return this.footer.isVisible();
   }
 
   async clickSignIn() {
-    await this.page.click('a[href="/auth/login"]');
+    await this.signInLink.click();
   }
 
   async clickContact() {
-    await this.page.click('a[href="/contact"]');
+    await this.contactLink.click();
   }
 
   async clickCategories() {
-    await this.page.click('button[aria-label="Categories"]');
-  }
-
-  async getNavLinks() {
-    return this.page.$$eval('nav[role="navigation"] a', els => els.map(e => e.textContent));
+    await this.categoriesButton.click();
   }
 
   async isBannerVisible() {
-    return this.page.isVisible('img[alt="Banner"]');
+    return this.bannerImage.isVisible();
   }
 
   async isSortDropdownVisible() {
-    return this.page.isVisible('select[name="sort"]');
+    return this.sortDropdown.isVisible();
   }
 
   async isSearchBoxVisible() {
-    return this.page.isVisible('input[placeholder="Search"]');
+    return this.searchBox.isVisible();
   }
 }
