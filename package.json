@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/HebePython/AI_playwright_new#readme",
   "devDependencies": {
-    "@playwright/test": "^1.52.0"
+    "@playwright/test": "^1.54.1"
   },
   "dependencies": {
     "ai_playwright_new": "file:"
